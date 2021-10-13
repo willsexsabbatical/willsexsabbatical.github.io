@@ -1,20 +1,33 @@
-<div class="tc fw1 f2 near-white sans-serif center" id="clockdiv">
-  <div class="pa2 br3 bg-blue dib">
-    <span class="pa3 br3 bg-dark-blue dib days"></span>
-    <div class="pt1 f5 fw1">Days</div>
-  </div>
-  <div class="pa2 br3 bg-blue dib">
-    <span class="pa3 br3 bg-dark-blue dib hours"></span>
-    <div class="pt1 f5 fw1">Hours</div>
-  </div>
-  <div class="pa2 br3 bg-blue dib">
-    <span class="pa3 br3 bg-dark-blue dib minutes"></span>
-    <div class="pt1 f5 fw1">Minutes</div>
-  </div>
-  <div class="pa2 br3 bg-blue dib">
-    <span class="pa3 br3 bg-dark-blue dib seconds"></span>
-    <div class="pt1 f5 fw1">Seconds</div>
-  </div>
-</div>
 
-<script src="./js/clock.js" charset="utf-8"></script>
+<center><h1 class="title f3 f2-l fw2 near-white mh0 mv4 " id="demo"></h1></center>
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Nov 13, 2021 12:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
